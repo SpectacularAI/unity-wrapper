@@ -1,0 +1,7 @@
+newmtl texture 1
+Ka 1.000 1.000 1.000
+Kd 1.000000 1.000000 1.000000
+Tr 1.000000
+illum 1
+Ns 0.000000
+map_Kd mesh.png
