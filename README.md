@@ -19,7 +19,7 @@ git clone https://github.com/SpectacularAI/unity-wrapper.git
  * **[unity-examples:](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples)** contains source code for the Unity wrapper and a couple of examples that demonstrate the usage:
     * **[HelloDepthAI](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/HelloDepthAI)** Minimal OAK-D example. Shows how to use the SDK to track the pose of OAK-D device in real-time.
     * **[MappingVisu](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/MappingVisu)** SLAM example. Build and visualize 3D point cloud of the environment in real-time using OAK-D device.
-    * **[Record](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/Record)** Recording tool. Enables recording datasets with OAK-D device for Replay API.
+    * **[Record](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/Record)** Recording tool. Enables recording datasets with OAK-D device for Replay API. Note: requires Ffmpeg https://spectacularai.github.io/docs/sdk/index.html#ffmpeg.
     * **[AprilTag](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/AprilTag)** April Tag integration example. Place April Tags using Unity Editor. The April Tags are then input to the SDK enabling absolute positioning.
     * **[HelloReplay](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/HelloReplay)** Minimal Replay API example. Shows how to use the Replay API in Unity to replay your recordings.
 
