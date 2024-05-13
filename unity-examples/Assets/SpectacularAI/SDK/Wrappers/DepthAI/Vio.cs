@@ -48,6 +48,9 @@ namespace SpectacularAI.DepthAI
         [Tooltip("Native options: 100, 200, 400, 1000")]
         public GyroscopeFrequency GyroFrequencyHz = GyroscopeFrequency.Hz400;
 
+        [Tooltip("If enabled, VIO doesn't produce any outputs")]
+        public bool RecordingOnly = false;
+
         [Tooltip("If not empty, the session will be recorded to the given folder")]
         public string RecordingFolder = "";
 
@@ -78,6 +81,7 @@ namespace SpectacularAI.DepthAI
             config.FastVio = FastVio;
             config.AccFrequencyHz = (uint)AccFrequencyHz;
             config.GyroFrequencyHz = (uint)GyroFrequencyHz;
+            config.RecordingOnly = RecordingOnly;
             config.RecordingFolder = RecordingFolder;
             config.AprilTagPath = AprilTagPath;
 

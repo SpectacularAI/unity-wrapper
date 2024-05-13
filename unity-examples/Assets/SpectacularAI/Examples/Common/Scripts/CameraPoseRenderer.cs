@@ -5,6 +5,7 @@ namespace SpectacularAI.Examples.Common
     public class CameraPoseRenderer : MonoBehaviour
     {
         public float Scale = 0.1f;
+        private MeshRenderer _meshRenderer;
 
         private static readonly int[] _indices =
         {
@@ -33,9 +34,14 @@ namespace SpectacularAI.Examples.Common
             mesh.SetVertices(vertices, 0, vertices.Length);
             mesh.SetIndices(_indices, MeshTopology.Lines, 0);
 
-            gameObject.AddComponent<MeshRenderer>();
+            _meshRenderer = gameObject.AddComponent<MeshRenderer>();
             MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
             meshFilter.mesh = mesh;
+        }
+
+        public void Show(bool show)
+        {
+            _meshRenderer.enabled = show;
         }
     }
 }

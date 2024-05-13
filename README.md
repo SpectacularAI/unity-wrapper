@@ -19,6 +19,7 @@ git clone https://github.com/SpectacularAI/unity-wrapper.git
  * **[unity-examples:](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples)** contains source code for the Unity wrapper and a couple of examples that demonstrate the usage:
     * **[HelloDepthAI](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/HelloDepthAI)** Minimal OAK-D example. Shows how to use the SDK to track the pose of OAK-D device in real-time.
     * **[MappingVisu](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/MappingVisu)** SLAM example. Build and visualize 3D point cloud of the environment in real-time using OAK-D device.
+    * **[Record](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/Record)** Recording tool. Enables recording datasets with OAK-D device for Replay API.
     * **[AprilTag](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/AprilTag)** April Tag integration example. Place April Tags using Unity Editor. The April Tags are then input to the SDK enabling absolute positioning.
     * **[HelloReplay](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/HelloReplay)** Minimal Replay API example. Shows how to use the Replay API in Unity to replay your recordings.
 
@@ -30,6 +31,9 @@ git clone https://github.com/SpectacularAI/unity-wrapper.git
 ## Copyright
 
 The examples in this repository are licensed under Apache 2.0 (see LICENSE).
+
+A list of 3rd party copyright notices that should be included in
+redistributions is provided within `unity-examples/Assets/SpectacularAI/Plugins/<operating system>/LICENSE`.
 
 The SDK itself (not included in this repository) is proprietary to Spectacular AI.
 For commerical licensing options and more SDK variants (ARM binaries & C++ API),
