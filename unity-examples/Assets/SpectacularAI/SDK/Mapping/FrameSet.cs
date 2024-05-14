@@ -83,7 +83,7 @@ namespace SpectacularAI.Mapping
                 
                 if (_primaryFrame == null)
                 {
-                    IntPtr frameHandle = ExternApi.sai_point_cloud_get_primary_frame(_handle);
+                    IntPtr frameHandle = ExternApi.sai_frame_set_get_primary_frame(_handle);
                     _primaryFrame = new Frame(frameHandle);
                 }
 
@@ -102,7 +102,7 @@ namespace SpectacularAI.Mapping
 
                 if (_secondaryFrame == null)
                 {
-                    IntPtr frameHandle = ExternApi.sai_point_cloud_get_secondary_frame(_handle);
+                    IntPtr frameHandle = ExternApi.sai_frame_set_get_secondary_frame(_handle);
                     _secondaryFrame = new Frame(frameHandle);
                 }
 
@@ -121,7 +121,7 @@ namespace SpectacularAI.Mapping
 
                 if (_rgbFrame == null)
                 {
-                    IntPtr frameHandle = ExternApi.sai_point_cloud_get_rgb_frame(_handle);
+                    IntPtr frameHandle = ExternApi.sai_frame_set_get_rgb_frame(_handle);
                     _rgbFrame = new Frame(frameHandle);
                 }
 
@@ -140,7 +140,7 @@ namespace SpectacularAI.Mapping
 
                 if (_depthFrame == null)
                 {
-                    IntPtr frameHandle = ExternApi.sai_point_cloud_get_depth_frame(_handle);
+                    IntPtr frameHandle = ExternApi.sai_frame_set_get_depth_frame(_handle);
                     _depthFrame = new Frame(frameHandle);
                 }
 
@@ -159,16 +159,16 @@ namespace SpectacularAI.Mapping
         private struct ExternApi
         {
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
-            public static extern IntPtr sai_point_cloud_get_primary_frame(IntPtr frameSetHandle);
+            public static extern IntPtr sai_frame_set_get_primary_frame(IntPtr frameSetHandle);
             
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
-            public static extern IntPtr sai_point_cloud_get_secondary_frame(IntPtr frameSetHandle);
+            public static extern IntPtr sai_frame_set_get_secondary_frame(IntPtr frameSetHandle);
             
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
-            public static extern IntPtr sai_point_cloud_get_rgb_frame(IntPtr frameSetHandle);
+            public static extern IntPtr sai_frame_set_get_rgb_frame(IntPtr frameSetHandle);
             
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
-            public static extern IntPtr sai_point_cloud_get_depth_frame(IntPtr frameSetHandle);
+            public static extern IntPtr sai_frame_set_get_depth_frame(IntPtr frameSetHandle);
 
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
             public static extern void sai_frame_set_release(IntPtr frameSetHandle);

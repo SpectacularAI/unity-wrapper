@@ -73,7 +73,7 @@ void sai_key_frame_release(const KeyFrameWrapper* keyFrameHandle) {
     if (keyFrameHandle) delete keyFrameHandle;
 }
 
-FrameWrapper* sai_point_cloud_get_primary_frame(FrameSetWrapper* frameSetHandle) {
+FrameWrapper* sai_frame_set_get_primary_frame(FrameSetWrapper* frameSetHandle) {
     assert(frameSetHandle);
     if (frameSetHandle->getHandle()->primaryFrame) {
         return new FrameWrapper(frameSetHandle->getHandle()->primaryFrame);
@@ -81,7 +81,7 @@ FrameWrapper* sai_point_cloud_get_primary_frame(FrameSetWrapper* frameSetHandle)
     return nullptr;
 }
 
-FrameWrapper* sai_point_cloud_get_secondary_frame(FrameSetWrapper* frameSetHandle) {
+FrameWrapper* sai_frame_set_get_secondary_frame(FrameSetWrapper* frameSetHandle) {
     assert(frameSetHandle);
     if (frameSetHandle->getHandle()->secondaryFrame) {
         return new FrameWrapper(frameSetHandle->getHandle()->secondaryFrame);
@@ -89,7 +89,7 @@ FrameWrapper* sai_point_cloud_get_secondary_frame(FrameSetWrapper* frameSetHandl
     return nullptr;
 }
 
-FrameWrapper* sai_point_cloud_get_rgb_frame(FrameSetWrapper* frameSetHandle) {
+FrameWrapper* sai_frame_set_get_rgb_frame(FrameSetWrapper* frameSetHandle) {
     assert(frameSetHandle);
     if (frameSetHandle->getHandle()->rgbFrame) {
         return new FrameWrapper(frameSetHandle->getHandle()->rgbFrame);
@@ -97,7 +97,7 @@ FrameWrapper* sai_point_cloud_get_rgb_frame(FrameSetWrapper* frameSetHandle) {
     return nullptr;
 }
 
-FrameWrapper* sai_point_cloud_get_depth_frame(FrameSetWrapper* frameSetHandle) {
+FrameWrapper* sai_frame_set_get_depth_frame(FrameSetWrapper* frameSetHandle) {
     assert(frameSetHandle);
     if (frameSetHandle->getHandle()->depthFrame) {
         return new FrameWrapper(frameSetHandle->getHandle()->depthFrame);

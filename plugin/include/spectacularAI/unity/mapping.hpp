@@ -36,10 +36,10 @@ extern "C" {
     EXPORT_API void sai_key_frame_release(const KeyFrameWrapper* keyFrameHandle);
 
     /** FrameSet API */
-    EXPORT_API FrameWrapper* sai_point_cloud_get_primary_frame(FrameSetWrapper* frameSetHandle);
-    EXPORT_API FrameWrapper* sai_point_cloud_get_secondary_frame(FrameSetWrapper* frameSetHandle);
-    EXPORT_API FrameWrapper* sai_point_cloud_get_rgb_frame(FrameSetWrapper* frameSetHandle);
-    EXPORT_API FrameWrapper* sai_point_cloud_get_depth_frame(FrameSetWrapper* frameSetHandle);
+    EXPORT_API FrameWrapper* sai_frame_set_get_primary_frame(FrameSetWrapper* frameSetHandle);
+    EXPORT_API FrameWrapper* sai_frame_set_get_secondary_frame(FrameSetWrapper* frameSetHandle);
+    EXPORT_API FrameWrapper* sai_frame_set_get_rgb_frame(FrameSetWrapper* frameSetHandle);
+    EXPORT_API FrameWrapper* sai_frame_set_get_depth_frame(FrameSetWrapper* frameSetHandle);
     EXPORT_API void sai_frame_set_release(FrameSetWrapper* frameSetHandle);
 
     /** Frame API */
