@@ -30,9 +30,10 @@ if(MSVC)
   list(APPEND PLUGIN_LIBS usb-1.0)
 endif()
 
-# enables searching for dynamic libraries from the relative path ../lib
+# enables searching for dynamic libraries from the relative path
 if(NOT MSVC)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath='$ORIGIN/../lib:$ORIGIN/../lib/3rdparty'")
+  set(CMAKE_INSTALL_RPATH "$ORIGIN")
+  set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 endif()
 
 add_library(${CMAKE_PROJECT_NAME} SHARED ${PLUGIN_SRC})
