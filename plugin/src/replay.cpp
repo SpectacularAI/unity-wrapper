@@ -1,26 +1,39 @@
 #include "../include/spectacularAI/unity/replay.hpp"
 #include "../include/spectacularAI/unity/mapping.hpp"
 
+#include <cstring>
+#include <cassert>
 #include <memory>
 #include <spectacularAI/replay.hpp>
-
-#include <cassert>
 
 spectacularAI::Replay* sai_replay_build(
         const char* folder,
         const char* configurationYAML,
-        callback_t_mapper_output onMapperOutput) {
-    spectacularAI::Vio::Builder vioBuilder = spectacularAI::Vio::builder();
-    vioBuilder.setConfigurationYAML(configurationYAML);
-    if (onMapperOutput) {
-        vioBuilder.setMapperCallback(
-            [onMapperOutput](spectacularAI::mapping::MapperOutputPtr mappingOutput) {
-                const MapperOutputWrapper* wrapper = new MapperOutputWrapper(mappingOutput);
-                onMapperOutput(wrapper);
-            }
-        );
+        callback_t_mapper_output onMapperOutput,
+        char* errorMsg) {
+    try {
+        spectacularAI::Vio::Builder vioBuilder = spectacularAI::Vio::builder();
+        vioBuilder.setConfigurationYAML(configurationYAML);
+        if (onMapperOutput) {
+            vioBuilder.setMapperCallback(
+                [onMapperOutput](spectacularAI::mapping::MapperOutputPtr mappingOutput) {
+                    const MapperOutputWrapper* wrapper = new MapperOutputWrapper(mappingOutput);
+                    onMapperOutput(wrapper);
+                }
+            );
+        }
+
+        return spectacularAI::Replay::builder(folder, vioBuilder).build().release();
+    } catch(const std::runtime_error &e) {
+        if (errorMsg != nullptr) {
+            strncpy(errorMsg, e.what(), 1000 - 1);
+            errorMsg[1000 - 1] = '\0'; // Ensure null-termination
+        } else {
+            throw e;
+        }
     }
-    return spectacularAI::Replay::builder(folder, vioBuilder).build().release();
+
+    return nullptr;
 }
 
 void sai_replay_release(spectacularAI::Replay* replayHandle) {

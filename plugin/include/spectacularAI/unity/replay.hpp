@@ -11,8 +11,9 @@ extern "C" {
 
     EXPORT_API spectacularAI::Replay* sai_replay_build(
         const char* folder,
-        const char* configurationYAML="",
-        callback_t_mapper_output onMapperOutput=nullptr);
+        const char* configurationYAML,
+        callback_t_mapper_output onMapperOutput,
+        char* errorMsg);
     EXPORT_API void sai_replay_start(spectacularAI::Replay* replayHandle);
     EXPORT_API void sai_replay_run(spectacularAI::Replay* replayHandle);
     EXPORT_API bool sai_replay_one_line(spectacularAI::Replay* replayHandle);

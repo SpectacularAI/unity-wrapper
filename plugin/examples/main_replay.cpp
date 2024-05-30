@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     std::string dataFolder = argv[1];
 
     // VIO callback
-    callback_t_vio_output onVioOutput = [](const VioOutputWrapper* output) { 
+    callback_t_vio_output onVioOutput = [](const VioOutputWrapper* output) {
         spectacularAI::Pose pose = sai_vio_output_get_pose(output);
         std::cout << "position = " << pose.position.x << ", " << pose.position.y << ", " << pose.position.z << std::endl;
         sai_vio_output_release(output); // must release memory!
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
         sai_mapper_output_release(mapperOutput); // must release memory!
     };
 
-    spectacularAI::Replay* replayHandle = sai_replay_build(dataFolder.c_str(), "", onMapperOutput);
+    spectacularAI::Replay* replayHandle = sai_replay_build(dataFolder.c_str(), "", onMapperOutput, nullptr);
     sai_replay_set_output_callback(replayHandle, onVioOutput);
 
     while (sai_replay_one_line(replayHandle));

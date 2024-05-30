@@ -30,14 +30,15 @@ if(MSVC)
   list(APPEND PLUGIN_LIBS usb-1.0)
 endif()
 
-# enables searching for dynamic libraries from the relative path
-if(NOT MSVC)
-  set(CMAKE_INSTALL_RPATH "$ORIGIN")
-  set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-endif()
-
 add_library(${CMAKE_PROJECT_NAME} SHARED ${PLUGIN_SRC})
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${PLUGIN_LIBS})
+
+# enables searching for dynamic libraries from the relative path
+if(NOT MSVC)
+  set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+    INSTALL_RPATH "$ORIGIN"
+    BUILD_WITH_INSTALL_RPATH TRUE)
+endif()
 
 # C++ Replay example
 add_executable(main_replay ${PLUGIN_SRC} examples/main_replay.cpp)

@@ -46,7 +46,7 @@ extern "C"
         const char** internalParameters,
         int internalParametersCount,
         callback_t_mapper_output onMapperOutput);
-    EXPORT_API spectacularAI::daiPlugin::Session* sai_depthai_pipeline_start_session(PipelineWrapper* pipelineHandle);
+    EXPORT_API spectacularAI::daiPlugin::Session* sai_depthai_pipeline_start_session(PipelineWrapper* pipelineHandle, char* errorMsg);
     EXPORT_API void sai_depthai_pipeline_release(PipelineWrapper* pipelineHandle);
 
     /** Session API */

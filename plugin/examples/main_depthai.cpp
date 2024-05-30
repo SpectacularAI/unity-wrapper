@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     };
 
     PipelineWrapper* pipeline = sai_depthai_pipeline_build(&config, nullptr, 0, onMapperOutput);
-    spectacularAI::daiPlugin::Session* session = sai_depthai_pipeline_start_session(pipeline);
+    spectacularAI::daiPlugin::Session* session = sai_depthai_pipeline_start_session(pipeline, nullptr);
 
     int counter = 0;
     while (counter < 1000) {

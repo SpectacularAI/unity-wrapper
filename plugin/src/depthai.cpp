@@ -57,9 +57,20 @@ PipelineWrapper* sai_depthai_pipeline_build(
     return new PipelineWrapper(handle, pipeline, device);
 }
 
-spectacularAI::daiPlugin::Session* sai_depthai_pipeline_start_session(PipelineWrapper* pipelineHandle) {
+spectacularAI::daiPlugin::Session* sai_depthai_pipeline_start_session(PipelineWrapper* pipelineHandle, char* errorMsg) {
     assert(pipelineHandle);
-    return pipelineHandle->getHandle()->startSession(*pipelineHandle->getDevice()).release();
+    try {
+        return pipelineHandle->getHandle()->startSession(*pipelineHandle->getDevice()).release();
+    } catch(const std::runtime_error &e) {
+        if (errorMsg != nullptr) {
+            strncpy(errorMsg, e.what(), 1000 - 1);
+            errorMsg[1000 - 1] = '\0'; // Ensure null-termination
+        } else {
+            throw e;
+        }
+    }
+
+    return nullptr;
 }
 
 void sai_depthai_pipeline_release(PipelineWrapper* pipelineHandle) {

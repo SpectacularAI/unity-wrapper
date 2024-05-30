@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Text;
 using System.Runtime.InteropServices;
 using SpectacularAI.Native;
 
@@ -53,7 +53,12 @@ namespace SpectacularAI
                 };
             }
 
-            _handle = ExternApi.sai_replay_build(folder, configurationYAML, _mapperOutputCallback);
+            var buffer = new StringBuilder(1000);
+            _handle = ExternApi.sai_replay_build(folder, configurationYAML, _mapperOutputCallback, buffer);
+            if (_handle == IntPtr.Zero)
+            {
+                throw new Exception(buffer.ToString());
+            }
 
             _vioOutputCallback = (vioOutputHandle) =>
             {
@@ -84,7 +89,7 @@ namespace SpectacularAI
                 {
                     // No managed resources to release in this case
                 }
-                
+
                 ExternApi.sai_replay_release(_handle);
 
                 _disposed = true;
@@ -156,14 +161,15 @@ namespace SpectacularAI
                 throw new ObjectDisposedException(nameof(Replay));
             }
         }
-        
+
         private struct ExternApi
         {
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
             public static extern IntPtr sai_replay_build(
                 [MarshalAs(UnmanagedType.LPStr)] string folder,
                 [MarshalAs(UnmanagedType.LPStr)] string configurationYAML,
-                CallbackDelegate onMapperOutput);
+                CallbackDelegate onMapperOutput,
+                StringBuilder errorMsg);
 
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
             public static extern void sai_replay_start(IntPtr replayHandle);

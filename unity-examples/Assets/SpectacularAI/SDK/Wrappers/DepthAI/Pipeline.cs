@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Runtime.InteropServices;
 using SpectacularAI.Native;
 
@@ -90,7 +91,14 @@ namespace SpectacularAI.DepthAI
         public Session StartSession()
         {
             CheckDisposed();
-            IntPtr sessionHandle = ExternApi.sai_depthai_pipeline_start_session(_handle);
+
+            var buffer = new StringBuilder(1000);
+            IntPtr sessionHandle = ExternApi.sai_depthai_pipeline_start_session(_handle, buffer);
+            if (sessionHandle == IntPtr.Zero)
+            {
+                throw new Exception(buffer.ToString());
+            }
+
             return new Session(sessionHandle);
         }
 
@@ -112,7 +120,7 @@ namespace SpectacularAI.DepthAI
                 CallbackDelegate onMapperOutput);
 
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
-            public static extern IntPtr sai_depthai_pipeline_start_session(IntPtr pipelineHandle);
+            public static extern IntPtr sai_depthai_pipeline_start_session(IntPtr pipelineHandle, StringBuilder errorMsg);
 
             [DllImport(ApiConstants.saiNativeApi, CallingConvention = ApiConstants.saiCallingConvention)]
             public static extern void sai_depthai_pipeline_release(IntPtr pipelineHandle);
