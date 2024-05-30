@@ -1,5 +1,6 @@
 using UnityEngine;
 using SpectacularAI;
+using System.Collections.Generic;
 
 namespace HelloReplay
 {
@@ -8,21 +9,27 @@ namespace HelloReplay
     /// </summary>
     public class ReplayController : MonoBehaviour
     {
-        [SerializeField]
         [Tooltip("Path to recording")]
-        private string _ReplayFolder;
+        public string ReplayFolder;
+
+        [Tooltip("Internal algorithm parameters")]
+        public List<VioParameter> InternalParameters;
 
         private Replay _replay;
 
+        private UnityEngine.Camera _camera;
+
         private void OnEnable()
         {
-            if (string.IsNullOrEmpty(_ReplayFolder))
+            _camera = UnityEngine.Camera.main;
+
+            if (string.IsNullOrEmpty(ReplayFolder))
             {
                 Debug.LogError("Please set ReplayFolder in the Editor!");
                 return;
             }
 
-            _replay = new Replay(_ReplayFolder);
+            _replay = new Replay(ReplayFolder, InternalParameters.ToArray());
         }
 
         private void OnDisable()
@@ -36,7 +43,8 @@ namespace HelloReplay
 
         private void Update()
         {
-            if (_replay != null)
+            // Loops until one vio output, or end of recording
+            while (_replay != null)
             {
                 bool moreData = _replay.ReplayOneLine();
                 if (!moreData)
@@ -45,13 +53,16 @@ namespace HelloReplay
                     _replay.Dispose();
                     _replay = null;
                 }
-            }
 
-            if (ReplayAPI.HasOutput())
-            {
-                VioOutput output = ReplayAPI.Dequeue();
-                Debug.Log(output.Status);
-                output.Dispose(); // Must dispose vio outputs
+                if (ReplayAPI.HasOutput())
+                {
+                    VioOutput output = ReplayAPI.Dequeue();
+                    SpectacularAI.Pose pose = output.GetCameraPose(0).Pose;
+                    _camera.transform.position = pose.Position;
+                    _camera.transform.rotation = pose.Orientation;
+                    output.Dispose(); // Must dispose vio outputs
+                    break;
+                }
             }
         }
     }
