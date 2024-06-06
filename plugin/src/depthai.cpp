@@ -3,6 +3,7 @@
 #include <string>
 #include <depthai/depthai.hpp>
 #include <cassert>
+#include <stdexcept>
 
 namespace {
 

@@ -5,6 +5,7 @@
 #include <cassert>
 #include <memory>
 #include <spectacularAI/replay.hpp>
+#include <stdexcept>
 
 spectacularAI::Replay* sai_replay_build(
         const char* folder,
