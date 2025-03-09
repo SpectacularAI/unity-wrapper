@@ -23,6 +23,31 @@ git clone https://github.com/SpectacularAI/unity-wrapper.git
     * **[AprilTag](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/AprilTag)** April Tag integration example. Place April Tags using Unity Editor. The April Tags are then input to the SDK enabling absolute positioning.
     * **[HelloReplay](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples/Assets/SpectacularAI/Examples/HelloReplay)** Minimal Replay API example. Shows how to use the Replay API in Unity to replay your recordings.
 
+### Running Unity applications on Linux
+
+Most of the dependecies are included with the build, but there are a few libraries that must be present on the system for the plugin to run correctly.
+
+System library dependencies:
+```
+libstdc++.so.6
+libm.so.6
+libgcc_s.so.1
+libc.so.6
+librt.so.1
+libz.so.1
+libdl.so.2
+libpthread.so.0
+/lib64/ld-linux-x86-64.so.2
+libusb-1.0.so
+```
+Most of these libraries will be installed by default on a Linux system, but if you encounter errors in your application `player.log` like "Failed to open plugin: libspectacularAI_unity.so", make sure all of these libraries exist on your machine and install them if not (see [Issue 3](https://github.com/SpectacularAI/unity-wrapper/issues/3)).
+
+We encountered a missing `libusb-1.0.so` library on a fresh install of Ubuntu Jammy 22.04 and fixed the problem by running:
+```
+sudo apt update
+sudo apt install libusb-1.0-0-dev
+```
+
 ### Quick links
 
 #### [SDK documentation](https://spectacularai.github.io/docs/sdk/)
