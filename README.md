@@ -5,13 +5,22 @@ Spectacular AI SDK fuses data from cameras and IMU sensors (accelerometer and gy
 This repository contains example Unity integration for the Spectacular AI DepthAI C++ Plugin, enabling real-time tracking and reconstruction with OAK-D devices straight in Unity.
 
 ### Getting started
-You can either,
+
+**Installation** You can either,
 1. Clone this repository and open [unity-examples](https://github.com/SpectacularAI/unity-wrapper/tree/main/unity-examples) using Unity Hub.
 ```
 git clone https://github.com/SpectacularAI/unity-wrapper.git
 ```
 
 2. Or, download `spectacularAI.unitypackage` from the [releases page](https://github.com/SpectacularAI/unity-wrapper/releases), and import it directly to your Unity project inside Unity Editor using `Assets->Import Package->Custom Package...`
+
+**OAK-D setup** To use an OAK-D device, you also need to
+[set up the USB udev rules](https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide/#USB%20deployment%20guide-Initial%20Connection-Debugging-Linux%20udev%20rules)
+and, on Linux, install `libusb` development libraries:
+
+    sudo apt install libusb-1.0-0-dev
+
+See [Luxonis documentation](https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide) for more information.
 
 ### Project structure
 
